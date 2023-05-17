@@ -1,10 +1,15 @@
 import { PostService } from './05-dependency-b';
+import { JsonDataBaseService, LocalDataBaseService, WebApiPostService } from './05-dependency-c';
 
 
 // Main
 (async () => {
 
-    const postService = new PostService();
+    //const provider = new JsonDataBaseService();
+    const provider = new WebApiPostService();
+    //const provider = new LocalDataBaseService();
+
+    const postService = new PostService(provider);
 
     const posts = await postService.getPosts();
 
